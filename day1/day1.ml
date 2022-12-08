@@ -14,9 +14,22 @@ let rec input_multilist acc cha =
 let lst_input = 
   Stdlib.open_in "input.txt" |> input_multilist []
 
+let lst_first n lst = 
+  let rec picker (acc: 'a list) n (lst: 'a list) = 
+    match lst, n with 
+    | [], _ -> acc
+    | _, 0 -> acc
+    | h::t, n -> picker (h::acc) (n-1) t
+  in
+  picker [] n lst
 
-let task1 () =
+let task1 =
   lst_input |> List.map (List.fold_left (+) 0) |> List.sort (fun x y -> ~- (compare x y)) |> List.hd |> 
-    string_of_int |> print_string
+    string_of_int |> print_string |> print_newline
   
-let _ = task1 ()
+  let task2 =
+    lst_input |> List.map (List.fold_left (+) 0) |> List.sort (fun x y -> ~- (compare x y)) 
+    |> lst_first 3 |> List.fold_left (+) 0 |>
+      string_of_int |> print_string
+
+let () = task1; task2

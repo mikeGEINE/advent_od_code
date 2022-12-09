@@ -46,4 +46,4 @@ let () =
   task1 content; task2 content
   
 
-(* dune exec --display quiet --no-print-directory ./day03.exe filename *)
+(* dune exec --display quiet --no-print-directory ./day3.exe [filename] *)
